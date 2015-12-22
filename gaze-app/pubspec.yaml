@@ -1,0 +1,11 @@
+name: gaze_app
+author: Steven Roose <stevenroose@gmail.com>
+
+dependencies:
+  gaze_shared:
+    path: ../gaze-shared
+  flutter:
+    path: /opt/flutter/packages/flutter
+
+  websockets: "^0.1.1"
+

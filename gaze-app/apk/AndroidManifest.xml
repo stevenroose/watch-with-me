@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ch.roose.steven.gaze.app"
+    android:versionCode="2"
+    android:versionName="0.0.2">
+
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application android:name="org.domokit.sky.shell.SkyApplication"
+                 android:icon="@drawable/ic_launcher"
+                 android:label="Watch With Me">
+        <activity android:name="org.domokit.sky.shell.SkyActivity"
+                  android:launchMode="singleTask"
+                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                  android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
+                  android:hardwareAccelerated="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

@@ -1,0 +1,3 @@
+[submodule "modules/gaze-shared"]
+	path = modules/gaze-shared
+	url = git@github.com:stevenroose/gaze-shared.git
