@@ -17,6 +17,8 @@ class BackendProvider extends Object with Events {
 
   }
 
+  String _lastBgImage;
+
   Stream<int> get onGazersUpdate => on("update_gazers");
   Stream<String> get onBackgroundUpdate => on("update_background");
 
@@ -39,7 +41,10 @@ class BackendProvider extends Object with Events {
         emit("update_gazers", message["nb_gazers"]);
       }
       if(message.containsKey("bg_image_url")) {
-        emit("update_background", message["bg_image_url"]);
+        if(message["bg_image_url"] != _lastBgImage) {
+          emit("update_background", message["bg_image_url"]);
+          _lastBgImage = message["bg_image_url"];
+        }
       }
     }
   }

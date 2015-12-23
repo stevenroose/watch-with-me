@@ -14,7 +14,7 @@ import "gazer_set.dart";
 import "image_updater.dart";
 
 
-const Duration IMAGE_REFRESH_INTERVAL = const Duration(minutes: 5);
+const Duration IMAGE_REFRESH_INTERVAL = const Duration(minutes: 1);
 const Duration IMAGE_REFRESH_INTERVAL_DEBUG = const Duration(seconds: 10);
 
 Logger logger;
@@ -80,12 +80,12 @@ void initImageUpdater(bool debug) {
     debug ? IMAGE_REFRESH_INTERVAL_DEBUG : IMAGE_REFRESH_INTERVAL);
 }
 
-Timer idleTimeout(webSocket) => new Timer(const Duration(seconds: 20), () {
+Timer idleTimeout(webSocket) => new Timer(const Duration(seconds: 3), () {
   webSocket.close();
 });
 
 void incomingGazer(webSocket) {
-  String challenge = randomString(16);
+  String challenge;
 
   Timer timeout = idleTimeout(webSocket);
 
@@ -94,6 +94,7 @@ void incomingGazer(webSocket) {
 
     if(message["type"] == "handshake_request") {
       timeout.cancel();
+      challenge = randomString(16);
       webSocket.add(messages.handshakeChallenge(challenge));
       timeout = idleTimeout(webSocket);
     } else if(message["type"] == "handshake_response") {
@@ -108,8 +109,8 @@ void incomingGazer(webSocket) {
     }
   }, onError: (error, stackTrace) {
     logger.warning(error, error, stackTrace);
-    gazers.remove(webSocket);
+    gazers.remove(webSocket..close());
   }, onDone: () {
-    gazers.remove(webSocket);
+    gazers.remove(webSocket..close());
   });
 }

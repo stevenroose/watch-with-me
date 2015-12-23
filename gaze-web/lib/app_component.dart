@@ -12,6 +12,7 @@ import "package:gaze_shared/backend_provider.dart";
 
 
 const String BACKEND_URL = "ws://gaze-backend.stevenroose.svc.tutum.io:80/";
+//const String BACKEND_URL = "ws://localhost:8080/";
 
 
 @Component(
@@ -42,7 +43,17 @@ class AppComponent {
     });
     backend.onBackgroundUpdate.listen((newBgUrl) {
       // update background
-      document.body.style.backgroundImage = "url($newBgUrl)";
+      print("new bg image: $newBgUrl");
+      var style = querySelector("html").style;
+      style
+        ..backgroundImage = "url($newBgUrl)";
+//        ..backgroundSize = "cover"
+//        ..backgroundRepeat = "no-repeat"
+//        ..backgroundPosition = "center center"
+//        ..width = "100%"
+//        ..height = "100%"
+//        ..overflow = "hidden";
+//      querySelector("#gaze_main").style.backgroundImage = "url($newBgUrl)";
     });
   }
 }
