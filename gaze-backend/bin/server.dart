@@ -101,6 +101,8 @@ void incomingGazer(webSocket) {
       timeout.cancel();
       if(validateChallenge(challenge, message["pow"])) {
         gazers.add(webSocket);
+        timeout = null;
+        challenge = null;
       } else {
         webSocket.close();
       }
