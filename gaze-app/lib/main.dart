@@ -28,11 +28,11 @@ class GazeState extends State<GazeApplication> {
   int nbGazers = -1;
   Queue<ImageResource> imageQueue = new Queue<ImageResource>();
 
-  BackendProvider backend = new BackendProvider();
+  BackendProvider backend;
 
 
   GazeState() {
-    startConnection();
+    backend = new BackendProvider.start(startConnection);
     imageQueue.addFirst(imageCache.load(DEFAULT_IMAGE_URL));
     initUpdateListeners();
   }

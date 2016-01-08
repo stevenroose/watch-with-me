@@ -3,6 +3,7 @@
 import "dart:async";
 
 import "package:events/events_nomirrors.dart";
+import "package:logging/logging.dart";
 
 import "package:gaze_shared/helper.dart";
 import "package:gaze_shared/messages.dart" as messages;
@@ -10,11 +11,16 @@ import "package:gaze_shared/messages.dart" as messages;
 
 class BackendProvider extends Object with Events {
 
+  static Logger logger = new Logger("gaze");
 
   dynamic webSocket;
+  StreamSubscription _sub;
+  Function _restart;
 
-  BackendProvider() {
+  BackendProvider(this._restart);
 
+  BackendProvider.start(this._restart) {
+    _restart();
   }
 
   String _lastBgImage;
@@ -25,13 +31,23 @@ class BackendProvider extends Object with Events {
   void initConnection(openWebSocket) {
     webSocket = openWebSocket;
     // start listening
-    webSocket.listen(_onMessage);
+    _sub = webSocket.listen(_onMessage,
+        onError: _restartWebSocket, onDone: _restartWebSocket);
     // request handshake challenge
     webSocket.add(messages.handshakeRequest());
   }
 
+  void _restartWebSocket([error]) {
+    logger.warning("WebSocket closed: $error");
+    _sub.cancel();
+    webSocket.close();
+    logger.info("Reopening WebSocket");
+    _restart();
+  }
+
   void _onMessage(message) {
     message = messages.parse(message);
+    logger.finer("New message from backend: $message");
 
     if(message["type"] == "handshake_challenge") {
       String pow = makeChallenge(message["challenge"]);

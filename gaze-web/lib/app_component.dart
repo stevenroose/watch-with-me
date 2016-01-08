@@ -24,10 +24,10 @@ class AppComponent {
   int nbGazers = 0;
   String imageUrl = "https://i.imgur.com/s3bFsdY.jpg";
 
-  BackendProvider backend = new BackendProvider();
+  BackendProvider backend;
 
   AppComponent() {
-    startConnection();
+    backend = new BackendProvider.start(startConnection);
     initUpdateListeners();
   }
 
