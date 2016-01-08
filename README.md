@@ -14,7 +14,7 @@ The project consists of four packages:
  It is deployed as a Docker container on Digital Ocean using Tutum.io.
  
  - gaze-app: This package contains the mobile app.  It is built using 
- [Flutter](https://flutter.io) and should eventually be able to becompiled to both
+ [Flutter](https://flutter.io) and should eventually be able to be compiled to both
  Android and iOS. The app is currently only deployed on the 
  [Play Store](https://play.google.com/store/apps/details?id=ch.roose.steven.gaze.app).
  
