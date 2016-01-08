@@ -1,4 +1,9 @@
 
+/*
+ * The MIT License (MIT)
+ * Copyright (c) 2016 Steven Roose
+ */
+
 import 'dart:math';
 
 import "package:crypto/crypto.dart" show SHA256;

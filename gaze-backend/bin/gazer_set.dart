@@ -1,3 +1,8 @@
+/*
+ * The MIT License (MIT)
+ * Copyright (c) 2016 Steven Roose
+ */
+
 library gazer_set;
 
 import "dart:async";

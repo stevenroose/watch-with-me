@@ -1,4 +1,7 @@
-
+/*
+ * The MIT License (MIT)
+ * Copyright (c) 2016 Steven Roose
+ */
 
 import "dart:io";
 import "dart:collection";

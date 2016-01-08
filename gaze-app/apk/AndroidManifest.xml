@@ -1,3 +1,8 @@
+<!--
+  ~ The MIT License (MIT)
+  ~ Copyright (c) 2016 Steven Roose
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ch.roose.steven.gaze.app"
     android:versionCode="4"

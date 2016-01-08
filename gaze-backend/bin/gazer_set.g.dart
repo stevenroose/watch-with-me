@@ -1,3 +1,8 @@
+/*
+ * The MIT License (MIT)
+ * Copyright (c) 2016 Steven Roose
+ */
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // 2015-12-18T02:44:19.712Z
 
