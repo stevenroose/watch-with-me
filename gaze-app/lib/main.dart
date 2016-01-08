@@ -30,17 +30,15 @@ class GazeState extends State<GazeApplication> {
 
   BackendProvider backend;
 
-
   GazeState() {
     backend = new BackendProvider.start(startConnection);
     imageQueue.addFirst(imageCache.load(DEFAULT_IMAGE_URL));
     initUpdateListeners();
   }
 
-  void startConnection() {
-    WebSocket.connect(BACKEND_URL).then((ws) {
-      backend.initConnection(ws);
-    });
+  Future startConnection() async {
+    var ws = await WebSocket.connect(BACKEND_URL);
+    backend.initConnection(ws);
   }
 
   void initUpdateListeners() {
