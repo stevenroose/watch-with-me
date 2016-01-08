@@ -4,7 +4,7 @@ packages:
   analyzer:
     description: analyzer
     source: hosted
-    version: "0.27.1+1"
+    version: "0.27.1+2"
   args:
     description: args
     source: hosted
@@ -126,7 +126,7 @@ packages:
   source_gen:
     description: source_gen
     source: hosted
-    version: "0.4.7+2"
+    version: "0.4.8"
   source_span:
     description: source_span
     source: hosted

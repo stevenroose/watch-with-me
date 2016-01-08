@@ -20,6 +20,7 @@ class RedditSource {
   final Logger logger = new Logger("gaze.RedditSource");
 
   Set<String> _newImages = new Set<String>();
+  //TODO should use a LRUSet for this in the future instead of emptying every cycle
   Set<String> _lastUsedImages = new Set<String>();
 
   RedditSource();
@@ -47,6 +48,7 @@ class RedditSource {
         logger.fine("Fetching more images");
         listingResult.fetchMore();
       } else {
+        _lastUsedImages.clear();
         finished.complete();
       }
     });
